@@ -1,0 +1,858 @@
+<!doctype html>
+<html class="lazyload">
+    <head>
+        <title>Automations\Active File Drop\JOLIVI_PAID\README · BI | Docs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+                <link rel="icon" type="image/png" href="/icon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share:400|Jaldi:400,700|Fira+Mono:400,700">
+        <link rel="stylesheet" href="/assets/base.css">
+        <link rel="stylesheet" href="/assets/lindoc.css">
+        <style>
+            a,.results strong{color:#1c6964}
+            button,input[type=submit],input[type=button],input[type=reset],.button,.search input[type=submit]{background-color:#1c6964}
+            .search input[type=text]:focus,.results,.results strong{border-color:#1c6964 !important}
+            @media screen and (min-width:1450px){.livetoc a.active{ color:#1c6964}}
+        </style>
+        <script>
+            // Parent Elements - e.P("body") - https://gist.github.com/moqmar/0995cf6595201f7a062fb173cb4ab938
+            (function(E){E.matches||(E.matches=E.matchesSelector||E.msMatchesSelector||E.webkitMatchesSelector)})(Element.prototype)
+            Element.prototype.P=function(s){var e=this
+            if(!s||typeof s=="number")for(var i=0;i<(s||1);i++)e=e?e.parentElement:e
+            else if(typeof s=="string")while(e&&!e.matches(s))e=e.parentElement
+            else while(e&&e!=s)e=e.parentElement
+            return e}
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="/"><img src="https://joliviimagens.s3.amazonaws.com/editormc_disparos/produtos/jolivi/logo_jolivi_128x128.png" alt="BI | Docs"></a>
+            </h1>
+            <!-- THIS DOCUMENT IS INDEXED -->
+            <div class="search" role="search"><form data-baseurl="" onsubmit="search(this); return false;">
+                <input type="text" class="search-query" oninput="search(this.parentElement)" placeholder="Search...">
+                <input type="submit" value="➜">
+            </form><div class="results"></div></div>
+            <nav class="breadcrumbs">
+                <a href="/">BI | Docs</a> » <strong>Automations\Active File Drop\JOLIVI_PAID\README</strong>
+            </nav>
+        </header>
+
+        <main>
+            <aside class="toc"><ul></ul></aside>
+            <article>
+                <template search-description></template>
+
+<!-- CONTENT START -->
+<h1 id="jolivi_paid">JOLIVI_PAID</h1>
+<p>Last run: Dec 20, 2018 9:18 AM</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/Z/f/BJHwQ4fZE.png" alt="" /></p>
+<h2 id="import-file">Import File</h2>
+<ul>
+<li>
+<p><strong>Carga_Pagos</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/W/M/BkV-VVMWE.png" alt="" /></p>
+</li>
+</ul>
+<h2 id="filters">Filters</h2>
+<ul>
+<li>
+<p><strong>JOLIVI_PAID</strong></p>
+<p><strong>Filter Activity: JOLIVI_PAID</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/W/f/rJy2HNfW4.png" alt="" /></p>
+<p><strong>Filter Definition: JOLIVI_PAID</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/Z/z/rJ83N4zZV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE COPY HF D20</strong></p>
+<p><strong>Filter Activity: FDE COPY HF D20</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/Z/M/rkyXO4MZN.png" alt="" /></p>
+<p><strong>Filter Definition: COPY HF - D20</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/z/r1OSuNz-4.png" alt="" /></p>
+</li>
+</ul>
+<h2 id="query">Query</h2>
+<ul>
+<li>
+<p><strong>JOLIVI_PLANOS</strong></p>
+<pre><code class="language-sql">SELECT DISTINCT p.EmailAddress, 
+p.SubscriberKey,
+xcode,
+p.name,
+COALESCE(dossie.is_active, 'FALSE') as dossie_active, dossie.dt as dossie_dt,
+COALESCE(remedio_natural.is_active, 'FALSE') as remedio_natural_active, remedio_natural.dt as remedio_natural_dt,
+COALESCE(remedio_natural_m.is_active, 'FALSE') as remedio_natural_m_active, remedio_natural_m.dt as remedio_natural_m_dt,
+  COALESCE(remedio_bk_offer.is_active, 'FALSE') as remedio_bk_offer_active, remedio_bk_offer.dt as remedio_bk_offer_dt,
+  COALESCE(golden6_essential.is_active, 'FALSE') as golden6_essential_active, golden6_essential.dt as golden6_essential_dt,
+  COALESCE(golden6_economy.is_active, 'FALSE') as golden6_economy_active, golden6_economy.dt as golden6_economy_dt,
+  COALESCE(golden6_vip.is_active, 'FALSE') as golden6_vip_active, golden6_vip.dt as golden6_vip_dt,
+  COALESCE(palavra_lair.is_active, 'FALSE') as palavra_lair_active, palavra_lair.dt as palavra_lair_dt,
+  COALESCE(conexao_cerebro.is_active, 'FALSE') as conexao_cerebro_active, conexao_cerebro.dt as conexao_cerebro_dt,
+  COALESCE(homem_ferro.is_active, 'FALSE') as homem_ferro_active, homem_ferro.dt as homem_ferro_dt,
+  COALESCE(palavra_lair_m.is_active, 'FALSE') as palavra_lair_m_active, palavra_lair_m.dt as palavra_lair_m_dt,
+  COALESCE(combo_golden6.is_active, 'FALSE') as combo_golden6_active, combo_golden6.dt as combo_golden6_dt,
+  COALESCE(vida_sem_dor.is_active, 'FALSE') as vida_sem_dor_active, vida_sem_dor.dt as vida_sem_dor_dt,
+  COALESCE(remedio_natural_trial.is_active, 'FALSE') as remedio_natural_trial_active, remedio_natural_trial.dt as remedio_natural_trial_dt,
+  COALESCE(dossie_v.is_active, 'FALSE') as dossie_v_active, dossie_v.dt as dossie_v_dt,
+  COALESCE(remedio_v.is_active, 'FALSE') as remedio_v_active, remedio_v.dt as remedio_v_dt,
+  COALESCE(conexao_v.is_active, 'FALSE') as conexao_v_active, conexao_v.dt as conexao_v_dt,
+  COALESCE(palavra_lair_vitalicio.is_active, 'FALSE') as palavra_lair_v, palavra_lair_vitalicio.dt as palavra_lair_v_dt,
+  COALESCE(sos_artrite.is_active, 'FALSE') as sos_artrite_active, sos_artrite.dt as sos_artrite_dt,
+  COALESCE(clube_jolivi.is_active, 'FALSE') as clube_jolivi_active, clube_jolivi.dt as clube_jolivi_dt,
+COALESCE(conexao_vitalicio.is_active, 'FALSE') as conexao_vitalicio_active, conexao_vitalicio.dt as conexao_vitalicio_dt,
+COALESCE(remedio_natural_expr_livro.is_active, 'FALSE') as remedio_vitalicio_expr_livro_active, remedio_natural_expr_livro.dt as remedio_vitalicio_expr_livro_dt,
+COALESCE(anos_mais_jovem.is_active, 'FALSE') as '30_anos_jovem_active', anos_mais_jovem.dt as '30_anos_jovem_dt',
+COALESCE(plr_vitalicio_expr_livro.is_active, 'FALSE') as 'plr_vitalicio_exp_livro', plr_vitalicio_expr_livro.dt as 'plr_vitalicio_exp_livro_dt',
+COALESCE(mais_visao.is_active, 'FALSE') as 'mais_visao_active', mais_visao.dt as 'mais_visao_dt',
+COALESCE(lair_3_botoes.is_active, 'FALSE') as 'lair_3_botoes_active', lair_3_botoes.dt as 'lair_3_botoes_dt',
+COALESCE(g6_sem_essential_pass.is_active, 'FALSE') as 'g6_sem_essential_pass_active', g6_sem_essential_pass.dt as 'g6_sem_essential_pass_dt',
+COALESCE(dossie_v_sem_anual.is_active, 'FALSE') as 'dossie_v_sem_anual_active', dossie_v_sem_anual.dt as 'dossie_v_sem_anual_dt',
+COALESCE(super_saude_anual.is_active, 'FALSE') as 'super_saude_anual_active', super_saude_anual.dt as 'super_saude_anual_dt',
+COALESCE(voce_mais_jovem.is_active, 'FALSE') as 'voce_mais_jovem_active', voce_mais_jovem.dt as 'voce_mais_jovem_dt',
+COALESCE(coracao_anti_infarto.is_active, 'FALSE') as 'coracao_anti_infarto_active', coracao_anti_infarto.dt as 'coracao_anti_infarto_dt',
+COALESCE(coracao_anti_infarto_essencial.is_active, 'FALSE') as 'coracao_anti_infarto_essencial_active', coracao_anti_infarto_essencial.dt as 'coracao_anti_infarto_essencial_dt',
+COALESCE(oferta_lair_ribeiro.is_active, 'FALSE') as 'oferta_lair_ribeiro_active', oferta_lair_ribeiro.dt as 'oferta_lair_ribeiro_dt',
+COALESCE(dossie_sem_boleto.is_active, 'FALSE') as 'dossie_sem_boleto_active', dossie_sem_boleto.dt as 'dossie_sem_boleto_dt',
+COALESCE(palavra_expresso_livro_cai.is_active, 'FALSE') as 'palavra_expresso_livro_cai_active', palavra_expresso_livro_cai.dt as 'palavra_expresso_livro_cai_dt',
+  COALESCE(super_saude_expresso_vitalicio.is_active, 'FALSE') as 'super_saude_expresso_vitalicio_active', super_saude_expresso_vitalicio.dt as 'super_saude_expresso_vitalicio_dt',
+COALESCE(coluna_100.is_active, 'FALSE') as 'coluna_100_active', coluna_100.dt as 'coluna_100_dt',
+COALESCE(remedio_natural_vit_expresso_bb.is_active, 'FALSE') as 'remedio_natural_vit_expresso_bb_active', remedio_natural_vit_expresso_bb.dt as 'remedio_natural_vit_expresso_bb_dt',
+COALESCE(remedio_natural_anual_bb.is_active, 'FALSE') as 'remedio_natural_anual_bb_active', remedio_natural_anual_bb.dt as 'remedio_natural_anual_bb_dt',
+COALESCE(dossie_vit_expresso_bb.is_active, 'FALSE') as 'dossie_vit_expresso_bb_active', dossie_vit_expresso_bb.dt as 'dossie_vit_expresso_bb_dt',
+COALESCE(dossie_anual_bb.is_active, 'FALSE') as 'dossie_anual_bb_active', dossie_anual_bb.dt as 'dossie_anual_bb_dt',
+COALESCE(confraria.is_active, 'FALSE') as 'confraria_active', confraria.dt as 'confraria_dt',
+COALESCE(conexao_cerebro_anual_bb.is_active, 'FALSE') as 'conexao_cerebro_anual_bb_active', conexao_cerebro_anual_bb.dt as 'conexao_cerebro_anual_bb_dt',
+COALESCE(conexao_cerebro_vit_expresso_bb.is_active, 'FALSE') as 'conexao_cerebro_vit_expresso_bb_active', conexao_cerebro_vit_expresso_bb.dt as 'conexao_cerebro_vit_expresso_bb_dt',
+COALESCE(clube_bb.is_active, 'FALSE') as 'clube_bb_active', clube_bb.dt as 'clube_bb_dt',
+COALESCE(supercerebro_alzheimer.is_active, 'FALSE') as 'supercerebro_alzheimer_active', supercerebro_alzheimer.dt as 'supercerebro_alzheimer_dt',
+COALESCE(plr_livro_cai.is_active, 'FALSE') as 'plr_livro_cai_active', plr_livro_cai.dt as 'plr_livro_cai_dt',     
+COALESCE(se_essencial_livro.is_active, 'FALSE') as 'se_essencial_livro_active', se_essencial_livro.dt as 'se_essencial_livro_dt',
+ COALESCE(supercerebro_alzheimer_essencial.is_active, 'FALSE') as 'supercerebro_alzheimer_essencial_active', supercerebro_alzheimer_essencial.dt as 'supercerebro_alzheimer_essencial_dt',
+ COALESCE(cc_anual_bb_sem_boleto.is_active, 'FALSE') as 'cc_anual_bb_sem_boleto_active', cc_anual_bb_sem_boleto.dt as 'cc_anual_bb_sem_boleto_dt',
+ COALESCE(hf_se_bb.is_active, 'FALSE') as 'hf_se_bb_active', hf_se_bb.dt as 'hf_se_bb_dt',
+ COALESCE(cai_livro.is_active, 'FALSE') as 'cai_livro_active', cai_livro.dt as 'cai_livro_dt',
+ COALESCE(hf_essential.is_active, 'FALSE') as 'hf_essential_active', hf_essential.dt as 'hf_essential_dt',
+   COALESCE(db_zero.is_active, 'FALSE') as 'db_zero_active', db_zero.dt as 'db_zero_dt',
+   COALESCE(db_zero_essencial.is_active, 'FALSE') as 'db_zero_essencial_active', db_zero_essencial.dt as 'db_zero_essencial_dt',
+   COALESCE(reserva.is_active, 'FALSE') as 'reserva_active', reserva.dt as 'reserva_dt'
+ FROM (SELECT * FROM ENT.DE_JOLIVI_PAID WHERE STATUS in  ('complete','upselling') and SubscriberKey is not null) p
+/* Dossiê */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete'  AND (plan_id IN (102200012) OR chosen_product in (102200012)) and (coalesce(parent_id,'0') not in ('102927012','102224012','200631099','202733099'))
+GROUP BY EmailAddress
+) as  dossie ON p.EmailAddress = dossie.EmailAddress
+
+/* Remédio Natural */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (103300012) AND (coalesce(parent_id,'0') not in ('103300030','103322012','202733099')))
+GROUP BY EmailAddress
+) as remedio_natural ON p.EmailAddress = remedio_natural.EmailAddress
+
+/* Remédio Natural Mensal */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE (status = 'complete' OR status = 'pending' OR status = 'new') AND (plan_id IN (103300001) or chosen_product in (103300001) and coalesce(parent_id,'0') not in ('202733099')) 
+GROUP BY EmailAddress
+) as remedio_natural_m ON p.EmailAddress = remedio_natural_m.EmailAddress
+
+/* Book Offer Remédio */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE (status = 'complete' OR status = 'pending' OR status = 'new' ) AND (plan_id IN (101100000) OR chosen_product in (101100000)) AND parent_id = 'book-offer-remedio-natural'
+GROUP BY EmailAddress
+) as remedio_bk_offer ON p.EmailAddress = remedio_bk_offer.EmailAddress
+
+/* Golden 6 Essential*/
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (200200006) OR chosen_product in (200200006) and coalesce(parent_id,'0') not in ('202733099'))
+GROUP BY EmailAddress
+) as golden6_essential ON p.EmailAddress = golden6_essential.EmailAddress
+
+/* Golden 6 Economy */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (200100006)  OR chosen_product in (200100006) and coalesce(parent_id,'0') not in ('202733099'))
+GROUP BY EmailAddress
+) as golden6_economy ON p.EmailAddress = golden6_economy.EmailAddress
+
+/* Golden 6 VIP */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (200300006) or chosen_product in (200300006) and coalesce(parent_id,'0') not in ('202733099'))
+GROUP BY EmailAddress
+) as golden6_vip ON p.EmailAddress = golden6_vip.EmailAddress
+
+/* Palavra Lair */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (100400012) or chosen_product in (100400012)) AND (coalesce(parent_id,'0') not in ('202114099','202515099','100420012','202132099','100434012','202733099'))
+GROUP BY EmailAddress
+) as palavra_lair ON p.EmailAddress = palavra_lair.EmailAddress
+
+/* Conexão Cerebro */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (100500012) or chosen_product in (100500012)) AND (coalesce(parent_id,'0') not in ('203028099','100524012','203029099','100530012','202733099'))
+GROUP BY EmailAddress
+) as conexao_cerebro ON p.EmailAddress = conexao_cerebro.EmailAddress
+
+/* Homem de Ferro */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (200600006) or chosen_product in (200600006)) AND (coalesce(parent_id,'0') not in ('202700099','200631099','200632006','202733099'))
+GROUP BY EmailAddress
+) as homem_ferro ON p.EmailAddress = homem_ferro.EmailAddress
+
+/* Palavra Lair Mensal */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (100400001) or chosen_product in (100400001))
+GROUP BY EmailAddress
+) as palavra_lair_m ON p.EmailAddress = palavra_lair_m.EmailAddress
+
+/* Golden 6 Combo */
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (200800006) or chosen_product in (200800006)) AND coalesce(parent_id,'0') not in ('200807099','202733099')
+GROUP BY EmailAddress
+) as combo_golden6 ON p.EmailAddress = combo_golden6.EmailAddress
+
+/*Remedio Natural Trial*/
+LEFT JOIN 
+( 
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (parent_id IN ('103300030') or chosen_product in (103300030))
+GROUP BY EmailAddress
+) as remedio_natural_trial ON p.EmailAddress = remedio_natural_trial.EmailAddress
+
+/*Vida sem dor*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (201000006) or chosen_product in (201000006)) AND (coalesce(parent_id,'0') not in  ('202700099','202733099'))
+GROUP BY EmailAddress
+) as vida_sem_dor ON p.EmailAddress = vida_sem_dor.EmailAddress
+
+/*Dossie vitalicio*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (102200099) or chosen_product in (102200099)) and (coalesce(parent_id,'0') not in ('102225099','101426099','202733099'))
+GROUP BY EmailAddress
+) as dossie_v ON p.EmailAddress = dossie_v.EmailAddress
+
+/*remedio vitalicio*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (103300099) or chosen_product in (103300099)) and (coalesce(parent_id,'0') not in ('103321099','101426099','202733099'))
+GROUP BY EmailAddress
+) as remedio_v ON p.EmailAddress = remedio_v.EmailAddress
+/*conexao_vitalicio*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (100500099) or chosen_product in (100500099)) and (coalesce(parent_id,'0') not in ('101426099','202733099'))
+GROUP BY EmailAddress
+) as conexao_v ON p.EmailAddress = conexao_v.EmailAddress
+
+/*palavra_lair_vitalicio*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (100400099) or chosen_product in (100400099)) and (coalesce(parent_id,'0') not in ('100415099','101426099','202132099','100434012','202733099'))
+GROUP BY EmailAddress
+) as palavra_lair_vitalicio ON p.EmailAddress = palavra_lair_vitalicio.EmailAddress
+
+/*sos artrite*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND (plan_id IN (201300099) or chosen_product in (201300099)) AND (coalesce(parent_id,'0') not in ('202733099', '202700099'))
+GROUP BY EmailAddress
+) as sos_artrite ON p.EmailAddress = sos_artrite.EmailAddress
+/*Clube Jolivi*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '101400012' and coalesce(parent_id,'0') not in ('101426099','202733099')
+GROUP BY EmailAddress
+) as clube_jolivi ON p.EmailAddress = clube_jolivi.EmailAddress
+/*Conexão Vitalicio + Expresso Jolivi*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100503099' and coalesce(parent_id,'0') not in ('100525099','202733099')                     
+GROUP BY EmailAddress
+) conexao_vitalicio on p.EmailAddress = conexao_vitalicio.EmailAddress
+/*Conexão Remedio Natural Vitalicio + Expresso + livro*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '103304099'
+GROUP BY EmailAddress
+) as remedio_natural_expr_livro ON p.EmailAddress = remedio_natural_expr_livro.EmailAddress
+/*30 anos mais jovem*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '201505099'
+GROUP BY EmailAddress
+) as anos_mais_jovem ON p.EmailAddress = anos_mais_jovem.EmailAddress
+/*Palavra Vitalicio + Expresso + Livro*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100406099'
+GROUP BY EmailAddress
+) as plr_vitalicio_expr_livro ON p.EmailAddress = plr_vitalicio_expr_livro.EmailAddress
+/*Mais Visão*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '201707099'
+GROUP BY EmailAddress
+) as mais_visao ON p.EmailAddress = mais_visao.EmailAddress
+/*Oferta Palavra do Dr. Lair Ribeiro Copy 3 botões*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100409099'
+GROUP BY EmailAddress
+) as lair_3_botoes ON p.EmailAddress = lair_3_botoes.EmailAddress
+/*Golden Six - Sem a campanha do Essential Pass*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '200807099'
+GROUP BY EmailAddress
+) as g6_sem_essential_pass ON p.EmailAddress = g6_sem_essential_pass.EmailAddress
+/*Dossie Vitalicio Sem Anual*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '102208099'
+GROUP BY EmailAddress
+) as dossie_v_sem_anual ON p.EmailAddress = dossie_v_sem_anual.EmailAddress
+/*Super Saude Dr. Uronal Anual*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '101812012'
+GROUP BY EmailAddress
+) as super_saude_anual ON p.EmailAddress = super_saude_anual.EmailAddress
+/*Voce Mais jovem*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '201913099'
+GROUP BY EmailAddress
+) as voce_mais_jovem ON p.EmailAddress = voce_mais_jovem.EmailAddress
+/*Coracao_anti_infarto*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '202114099'
+GROUP BY EmailAddress
+) as coracao_anti_infarto ON p.EmailAddress = coracao_anti_infarto.EmailAddress
+/*Coracao_anti_infarto_essencial*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '202515099'
+GROUP BY EmailAddress
+) as coracao_anti_infarto_essencial ON p.EmailAddress = coracao_anti_infarto_essencial.EmailAddress
+/*oferta_lair_ribeiro*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100415099'
+GROUP BY EmailAddress
+) as oferta_lair_ribeiro ON p.EmailAddress = oferta_lair_ribeiro.EmailAddress
+/*dossie_sem_boleto*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '102216012' and coalesce(parent_id,'0') &lt;&gt; '100418099'
+GROUP BY EmailAddress
+) as dossie_sem_boleto ON p.EmailAddress = dossie_sem_boleto.EmailAddress
+/*palavra_expresso_livro_cai*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100418099' and plan_id = 100400099
+GROUP BY EmailAddress
+) as palavra_expresso_livro_cai ON p.EmailAddress = palavra_expresso_livro_cai.EmailAddress
+/*super saude vitalicio + expresso*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '101817099'
+GROUP BY EmailAddress
+) as super_saude_expresso_vitalicio ON p.EmailAddress = super_saude_expresso_vitalicio.EmailAddress
+/*coluna_100*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '202519099'
+GROUP BY EmailAddress
+) as coluna_100 ON p.EmailAddress = coluna_100.EmailAddress
+/*remedio_natural_vit_expresso_bb*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '103321099'
+GROUP BY EmailAddress
+) as remedio_natural_vit_expresso_bb ON p.EmailAddress = remedio_natural_vit_expresso_bb.EmailAddress
+/*remedio_natural_anual_bb*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '103322012'
+GROUP BY EmailAddress
+) as remedio_natural_anual_bb ON p.EmailAddress = remedio_natural_anual_bb.EmailAddress
+/*remedio_dossie_anual_bb*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '102224012'
+GROUP BY EmailAddress
+) as dossie_anual_bb ON p.EmailAddress = dossie_anual_bb.EmailAddress
+/*dossie_vit_expresso_bb*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '102225099'
+GROUP BY EmailAddress
+) as dossie_vit_expresso_bb ON p.EmailAddress = dossie_vit_expresso_bb.EmailAddress
+/*confraria*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '202700099'
+GROUP BY EmailAddress
+) as confraria ON p.EmailAddress = confraria.EmailAddress
+/*Conexão Anual + O Grande Livro*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100524012'
+GROUP BY EmailAddress
+) as conexao_cerebro_anual_bb ON p.EmailAddress = conexao_cerebro_anual_bb.EmailAddress
+/*Conexão Vitalício + Expresso + O Grande Livro*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100525099'
+GROUP BY EmailAddress
+) as conexao_cerebro_vit_expresso_bb ON p.EmailAddress = conexao_cerebro_vit_expresso_bb.EmailAddress
+/*Clube + O Grande Livro da Saúde Natural */
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '101426099'
+GROUP BY EmailAddress
+) as clube_bb ON p.EmailAddress = clube_bb.EmailAddress
+/*Supercerebro sem alzheimer*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '203028099'
+GROUP BY EmailAddress
+) as supercerebro_alzheimer ON p.EmailAddress = supercerebro_alzheimer.EmailAddress
+/*Oferta Dossiê Saúde Essencial + O Grande Livro */
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '102927012' 
+GROUP BY EmailAddress
+) as se_essencial_livro ON p.EmailAddress = se_essencial_livro.EmailAddress
+/*Palavra do Dr. Lair + Livro CAI*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id in ('100420012','100434012')
+GROUP BY EmailAddress
+) as plr_livro_cai ON p.EmailAddress = plr_livro_cai.EmailAddress
+/*Supercerebro sem alzheimer essencial*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '203029099'
+GROUP BY EmailAddress
+) as supercerebro_alzheimer_essencial ON p.EmailAddress = supercerebro_alzheimer_essencial.EmailAddress
+/*Conexão Anual + O Grande Livro sem boleto*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '100530012'
+GROUP BY EmailAddress
+) as cc_anual_bb_sem_boleto ON p.EmailAddress = cc_anual_bb_sem_boleto.EmailAddress
+/*Homem de Ferro + Dossiê anual + O Grande livro*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '200631099'
+GROUP BY EmailAddress
+) as hf_se_bb ON p.EmailAddress = hf_se_bb.EmailAddress
+/*Coração Anti-Infarto + Livro*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '202132099'
+GROUP BY EmailAddress
+) as cai_livro ON p.EmailAddress = cai_livro.EmailAddress
+/*Homem de Ferro - Essencial*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '200632006'
+GROUP BY EmailAddress
+) as hf_essential ON p.EmailAddress = hf_essential.EmailAddress
+/*Diabetes Zero*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '203236099'
+GROUP BY EmailAddress
+) as db_zero ON p.EmailAddress = db_zero.EmailAddress
+/*Diabetes Zero Essencial*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '303237099'
+GROUP BY EmailAddress
+) as db_zero_essencial ON p.EmailAddress = db_zero_essencial.EmailAddress
+/*Reserva*/
+LEFT JOIN 
+(
+SELECT EmailAddress, 'TRUE' as is_active, MIN(payment_date) as dt 
+FROM ENT.DE_JOLIVI_PAID WHERE status = 'complete' AND parent_id = '202733099'
+GROUP BY EmailAddress)
+  as reserva ON p.EmailAddress = reserva.EmailAddress
+LEFT JOIN ENT.DE_G_JOLIVI as g ON p.subscriberkey = g.subscriberkey</code></pre>
+<p><strong>Target Data Extension: JOLIVI_PLANOS</strong></p>
+</li>
+</ul>
+<h2 id="filters-1">Filters</h2>
+<ul>
+<li>
+<p><strong>FDE Bundle Golden Six</strong></p>
+<p><strong>Filter Activity: FDE Bundle Golden Six</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/Z/G/Hkir1SGZV.png" alt="" /></p>
+<p><strong>Filter Definition: DF Golden Six Bundle</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/f/HyIPJSf-E.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF_DOSSIE</strong></p>
+<p><strong>Filter Activity: DF_DOSSIE</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/b/f/r10LlrfbN.png" alt="" /></p>
+<p><strong>Filter Definition: DF_DOSSIE</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/M/Byn-b8MbV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF_CEREBRO</strong></p>
+<p><strong>Filter Activity: DF_CEREBRO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/W/G/BJtgzrGWE.png" alt="" /></p>
+<p><strong>Filter Definition: DF_Conexao_Cerebro</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/W/G/ByeBWIGWE.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF_REMEDIO</strong></p>
+<p><strong>Filter Activity: DF_REMEDIO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/Z/M/ryALZLMZE.png" alt="" /></p>
+<p><strong>Filter Definition: DF_REMEDIO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/M/H1xF-UMbV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF_REMEDIO_M</strong></p>
+<p><strong>Filter Activity: DF_REMEDIO_M</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/Z/M/rkohZLMZE.png" alt="" /></p>
+<p><strong>Filter Definition: DF_REMEDIO_M</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/G/HyGAZLG-E.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF_GOLDEN6ESSENTIAL</strong></p>
+<p><strong>Filter Activity: DF_GOLDEN6ESSENTIAL</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/G/HyVeM8G-E.png" alt="" /></p>
+<p><strong>Filter Definition: DF_GOLDEN6ESSENTIAL</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/Z/z/H1BzG8zZN.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE PALAVRA LAIR</strong></p>
+<p><strong>Filter Activity: FDE PALAVRA LAIR</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/W/M/Bk1IfIMWE.png" alt="" /></p>
+<p><strong>Filter Definition: FDE PALAVRA LAIR</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/Z/M/S1mdMUMZV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_HOMEM_DE_FERRO</strong></p>
+<p><strong>Filter Activity: FDE_HOMEM_DE_FERRO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/b/f/rkj5fLfbE.png" alt="" /></p>
+<p><strong>Filter Definition: DF_HOMEM_DE_FERRO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/W/z/SyVgmLzW4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>AssinantesD4 - Frontends</strong></p>
+<p><strong>Filter Activity: AssinantesD4 - Frontends</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/b/f/ByuL7IfbE.png" alt="" /></p>
+<p><strong>Filter Definition: AssinantesD4 - Frontends</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/W/M/BJ4B7IMWE.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF_LAIR_MENSAL</strong></p>
+<p><strong>Filter Activity: DF_LAIR_MENSAL</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/Z/z/BkFtQ8zZN.png" alt="" /></p>
+<p><strong>Filter Definition: DF_LAIR_MENSAL</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/W/M/BJSsmIMWV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>Filter Assinantes Backends d10</strong></p>
+<p><strong>Filter Activity: Filter Assinantes Backends d10</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/Z/G/SJk678GZV.png" alt="" /></p>
+<p><strong>Filter Definition: Assinantes backends -10dias</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/M/rJhk4IM-E.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE VIDA SEM DOR</strong></p>
+<p><strong>Filter Activity: FDE VIDA SEM DOR</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/b/z/SJZ4S8zb4.png" alt="" /></p>
+<p><strong>Filter Definition: DF Vida sem dor</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/z/H1X8SUz-E.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE - Assinantes D10 - Backends new</strong></p>
+<p><strong>Filter Activity: FDE - Assinantes D10 - Backends new</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/Z/G/rJo_rIGZN.png" alt="" /></p>
+<p><strong>Filter Definition: Filter Assinantes D10 - Backends</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/W/z/H189BLzWV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>Dossie Vitalicio</strong></p>
+<p><strong>Filter Activity: Dossie Vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/W/z/SkHfUIzWE.png" alt="" /></p>
+<p><strong>Filter Definition: dossie vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/Z/z/ByyE88zZE.png" alt="" /></p>
+</li>
+<li>
+<p><strong>conexao cerebro vitalicio</strong></p>
+<p><strong>Filter Activity: conexao cerebro vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/W/z/HkAXwLzW4.png" alt="" /></p>
+<p><strong>Filter Definition: conexao cerebro vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/W/M/BJ6PDIMW4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>Remedio Vitalicio</strong></p>
+<p><strong>Filter Activity: Remedio Vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/W/G/HkrbZuGWN.png" alt="" /></p>
+<p><strong>Filter Definition: remedio vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/-/G/rkQGZuG-V.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_SOS_ARTRITE</strong></p>
+<p><strong>Filter Activity: FDE_SOS_ARTRITE</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/-/f/BJXL-df-N.png" alt="" /></p>
+<p><strong>Filter Definition: FDE_SOS_ARTRITE</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/Z/z/rkOD-dzZV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>Palavra do Lair vitalicio</strong></p>
+<p><strong>Filter Activity: Palavra do Lair vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/W/M/BkSjZOMW4.png" alt="" /></p>
+<p><strong>Filter Definition: DF Palavra do Lair Vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/W/M/ryo3ZuMWV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF CLUBE JOLIVI</strong></p>
+<p><strong>Filter Activity: DF CLUBE JOLIVI</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/W/M/HJLgM_MWN.png" alt="" /></p>
+<p><strong>Filter Definition: DF CLUBE JOLIVI</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/f/B1nWMdf-E.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_REMEDIO_VITALICIO_EXPRESSO_LIVRO</strong></p>
+<p><strong>Filter Activity: FDE_REMEDIO_VITALICIO_EXPRESSO_LIVRO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/Z/G/Byw4z_GZN.png" alt="" /></p>
+<p><strong>Filter Definition: Remedio_vitalicio_expr_livro</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/b/z/SJ2HGdzbE.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE 30 anos mais jovem</strong></p>
+<p><strong>Filter Activity: FDE 30 anos mais jovem</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/W/f/B1_dMufW4.png" alt="" /></p>
+<p><strong>Filter Definition: FDE_30_anos_mais_jovem</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/Z/z/HJ3FfdzZE.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_Mais_Visao</strong></p>
+<p><strong>Filter Activity: FDE_Mais_Visao</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/W/G/rk8gQdGWV.png" alt="" /></p>
+<p><strong>Filter Definition: DF_Mais_Visao</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/z/HkKpz_z-E.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_lair_3_botoes</strong></p>
+<p><strong>Filter Activity: FDE_lair_3_botoes</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/Z/z/S1cSQuzZ4.png" alt="" /></p>
+<p><strong>Filter Definition: DF_Lair_3_Botoes</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/Z/M/B1yrmOMZ4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_g6_sem_essential_pass</strong></p>
+<p><strong>Filter Activity: FDE_g6_sem_essential_pass</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/M/SkGtQdM-4.png" alt="" /></p>
+<p><strong>Filter Definition: DF_g6_sem_essential_pass</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/b/M/S1LdmuMbE.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_dossie_v_sem _anual</strong></p>
+<p><strong>Filter Activity: FDE_dossie_v_sem _anual</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/f/S1-aQ_f-4.png" alt="" /></p>
+<p><strong>Filter Definition: DF_dossie_v_sem _anual</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/-/z/r1S3Q_z-V.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_backends - G6 - SOS - VSD</strong></p>
+<p><strong>Filter Activity: FDE_backends - G6 - SOS - VSD</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/Z/M/SJ-M4dMZ4.png" alt="" /></p>
+<p><strong>Filter Definition: Backends - G6 - SOS - VSD</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/M/BkEZ4OMbV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DF_Super_Saude_Anual</strong></p>
+<p><strong>Filter Activity: DF_Super_Saude_Anual</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/M/B1j8VdM-E.png" alt="" /></p>
+<p><strong>Filter Definition: DF_Super_Saude_Anual</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/z/H1gU4uz-4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_Voce_Mais_Jovem</strong></p>
+<p><strong>Filter Activity: FDE_Voce_Mais_Jovem</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/-/G/BkeT4dG-N.png" alt="" /></p>
+<p><strong>Filter Definition: DF_VOCE_MAIS_JOVEM</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/G/S1b3EOGbV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_coracao_anti_infarto</strong></p>
+<p><strong>Filter Activity: FDE_coracao_anti_infarto</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/f/HJi4r_fbV.png" alt="" /></p>
+<p><strong>Filter Definition: DF_coracao_anti_infarto</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/b/M/HkLmr_Mb4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_coracao_Anti_infarto_Essencial</strong></p>
+<p><strong>Filter Activity: FDE_coracao_Anti_infarto_Essencial</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/M/S1lyL_MbV.png" alt="" /></p>
+<p><strong>Filter Definition: DF_coracao_anti_infarto_essencial</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/b/G/SkwaBdGb4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>DE_Super_Saude_Expresso_Vitalicio</strong></p>
+<p><strong>Filter Activity: DE_Super_Saude_Expresso_Vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/W/G/ByGjIdGWN.png" alt="" /></p>
+<p><strong>Filter Definition: DF_super_saude_expresso_vitalicio</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/M/ByHqIOM-4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_COLUNA_100</strong></p>
+<p><strong>Filter Activity: FDE_COLUNA_100</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/b/f/SkbvPOfbE.png" alt="" /></p>
+<p><strong>Filter Definition: FDE_Coluna_100</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/b/f/r1zUPOfbN.png" alt="" /></p>
+</li>
+<li>
+<p><strong>remedio_natural_bb</strong></p>
+<p><strong>Filter Activity: remedio_natural_bb</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/b/M/HkcXd_Mb4.png" alt="" /></p>
+<p><strong>Filter Definition: DF_remedio_natural_anual_bb</strong></p>
+</li>
+<li>
+<p><strong>FDE_dossie_vit_expresso_bb</strong></p>
+<p><strong>Filter Activity: FDE_dossie_vit_expresso_bb</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/Z/f/rkYPdufZE.png" alt="" /></p>
+<p><strong>Filter Definition: DF_dossie_vit_expresso_bb</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/z/SkRLduzbV.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_CONFRARIA</strong></p>
+<p><strong>Filter Activity: FDE_CONFRARIA</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/b/M/rymsOdMbE.png" alt="" /></p>
+<p><strong>Filter Definition: FDE_CONFRARIA</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/f/SyE5d_f-4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_SUPERCEREBRO_SEM_ALZHEIMER</strong></p>
+<p><strong>Filter Activity: FDE_SUPERCEREBRO_SEM_ALZHEIMER</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/W/M/r1XkY_MWV.png" alt="" /></p>
+<p><strong>Filter Definition: DFE_SDA</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/-/z/B1LR_dz-E.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_SUPER_SAUDE_ANUAL</strong></p>
+<p><strong>Filter Activity: FDE_SUPER_SAUDE_ANUAL</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/G/SkimYOGbV.png" alt="" /></p>
+<p><strong>Filter Definition: FDE_SSA_VIT</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/b/G/ryRzF_Gb4.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_DIABETES_ZERO</strong></p>
+<p><strong>Filter Activity: FDE_DIABETES_ZERO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/M/HJUPF_MbV.png" alt="" /></p>
+<p><strong>Filter Definition: FR_DIABETES_ZERO</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/W/f/H1YIKufWN.png" alt="" /></p>
+</li>
+<li>
+<p><strong>FDE_RESERVA</strong></p>
+<p><strong>Filter Activity: FDE_RESERVA</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/b/f/SyMsYufb4.png" alt="" /></p>
+<p><strong>Filter Definition: FDE_RESERVA</strong></p>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/b/z/Hkrct_zbN.png" alt="" /></p>
+</li>
+</ul>
+<!-- CONTENT END -->
+
+            </article>
+            <footer>
+                <hr>
+
+<!-- FOOTER BEGIN -->
+© 2018 Jolivi. Todos os direitos reservados. Termos de Uso e Política de Privacidade.
+<!-- FOOTER END -->
+
+            </footer>
+        </main>
+
+        <script src="/assets/toc.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script>Prism.plugins.autoloader.languages_path = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/";</script>
+        <link rel="stylesheet" href="/assets/prism.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/js-search@1.4.2/dist/umd/js-search.min.js"></script>
+        <script src="/assets/search.js"></script>
+        <!-- Livereload -->
+        <script>
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <!-- End Livereload -->
+    </body>
+</html>

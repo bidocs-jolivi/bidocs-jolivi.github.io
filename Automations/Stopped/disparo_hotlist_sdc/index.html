@@ -1,0 +1,374 @@
+<!doctype html>
+<html class="lazyload">
+    <head>
+        <title>Automations\Stopped\disparo_hotlist_sdc\README · BI | Docs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+                <link rel="icon" type="image/png" href="/icon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share:400|Jaldi:400,700|Fira+Mono:400,700">
+        <link rel="stylesheet" href="/assets/base.css">
+        <link rel="stylesheet" href="/assets/lindoc.css">
+        <style>
+            a,.results strong{color:#1c6964}
+            button,input[type=submit],input[type=button],input[type=reset],.button,.search input[type=submit]{background-color:#1c6964}
+            .search input[type=text]:focus,.results,.results strong{border-color:#1c6964 !important}
+            @media screen and (min-width:1450px){.livetoc a.active{ color:#1c6964}}
+        </style>
+        <script>
+            // Parent Elements - e.P("body") - https://gist.github.com/moqmar/0995cf6595201f7a062fb173cb4ab938
+            (function(E){E.matches||(E.matches=E.matchesSelector||E.msMatchesSelector||E.webkitMatchesSelector)})(Element.prototype)
+            Element.prototype.P=function(s){var e=this
+            if(!s||typeof s=="number")for(var i=0;i<(s||1);i++)e=e?e.parentElement:e
+            else if(typeof s=="string")while(e&&!e.matches(s))e=e.parentElement
+            else while(e&&e!=s)e=e.parentElement
+            return e}
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="/"><img src="https://joliviimagens.s3.amazonaws.com/editormc_disparos/produtos/jolivi/logo_jolivi_128x128.png" alt="BI | Docs"></a>
+            </h1>
+            <!-- THIS DOCUMENT IS INDEXED -->
+            <div class="search" role="search"><form data-baseurl="" onsubmit="search(this); return false;">
+                <input type="text" class="search-query" oninput="search(this.parentElement)" placeholder="Search...">
+                <input type="submit" value="➜">
+            </form><div class="results"></div></div>
+            <nav class="breadcrumbs">
+                <a href="/">BI | Docs</a> » <strong>Automations\Stopped\disparo_hotlist_sdc\README</strong>
+            </nav>
+        </header>
+
+        <main>
+            <aside class="toc"><ul></ul></aside>
+            <article>
+                <template search-description></template>
+
+<!-- CONTENT START -->
+<h1 id="disparo_hotlist_sdc">disparo_hotlist_sdc</h1>
+<p>Last run: Oct 16, 2018 2:11 PM</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/Z/b/BkKgpzbZN.png" alt="" /></p>
+<h2 id="queries">Queries</h2>
+<ul>
+<li>
+<p><strong>disparos_hl_sdc</strong></p>
+<pre><code class="language-sql">select
+cast(s.EventDate as date) as SendDate,
+null as OpenDate,
+null as ClickDate,
+s.SubscriberKey as Email,
+jo.EmailName as EmailNameJob,
+jo.EmailSubject as EmailSubject,
+0 as EntryDate,
+ej.xcode as EntryXcode,
+sum(case when O.SubscriberID is not null then 1 else 0 end) as Opens,
+sum(case when ck.SubscriberID is not null then 1 else 0 end) as Clicks,
+0 as UniqueOpens,
+0 as UniqueClicks,
+count(*) as Sends
+from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID
+left join (select distinct SubscriberID, JobID from _open) O
+on s.SubscriberID = O.SubscriberID
+and s.JobID = O.JobID
+left join (select distinct SubscriberID, JobID from _click) ck
+on s.SubscriberID = ck.SubscriberID
+and s.JobID = ck.JobID
+left join ENT.Hotlist_Coração_Anti_infarto_Externa ej
+on s.Subscriberkey = ej.Subscriberkey
+where s.EventDate &gt;= '06-27-2018'
+and ltrim(rtrim(upper(jo.EmailName))) in (
+'WELCOME - VMJ DA MRL - HORMÔNIOS',
+'WELCOME 2 STEP HORMÔNIOS - VOCÊ MAIS JOVEM',
+'WELCOME - PESQUISA REPOSIÇÃO HORMONAL',
+'WELCOME - VMJ DA MRL - REPOSIÇÃO HORMONAL SINTÉTICA',
+'WELCOME_VOCE_MAIS_JOVEM'
+)
+group by cast(s.EventDate as date),
+ej.xcode,
+s.SubscriberKey,
+jo.EmailName,
+jo.EmailSubject</code></pre>
+<p><strong>Target Data Extension: Disparos_MRL_VMJ (Overwrite)</strong></p>
+</li>
+<li>
+<p><strong>disparos_mrl_2</strong></p>
+<pre><code class="language-sql">select
+cast(s.EventDate as date) as SendDate,
+null as OpenDate,
+null as ClickDate,
+s.SubscriberKey as Email,
+jo.EmailName as EmailNameJob,
+jo.EmailSubject as EmailSubject,
+0 as EntryDate,
+ej.xcode as EntryXcode,
+sum(case when O.SubscriberID is not null then 1 else 0 end) as Opens,
+sum(case when ck.SubscriberID is not null then 1 else 0 end) as Clicks,
+0 as UniqueOpens,
+0 as UniqueClicks,
+count(*) as Sends
+from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID
+left join (select distinct SubscriberID, JobID from _open) O
+on s.SubscriberID = O.SubscriberID
+and s.JobID = O.JobID
+left join (select distinct SubscriberID, JobID from _click) ck
+on s.SubscriberID = ck.SubscriberID
+and s.JobID = ck.JobID
+left join ENT.Hotlist_Coração_Anti_infarto_Externa ej
+on s.Subscriberkey = ej.Subscriberkey
+where s.EventDate &gt;= '06-27-2018'
+and ltrim(rtrim(upper(jo.EmailName))) in (
+'CONVITE1_VMJ_19072018_GERAL_A',
+'CONVITE1_VMJ_19072018_GERAL_B',
+'CONVITE1_VMJ_19072019_GERAL_A',
+'CONVITE1_VMJ_19072019_GERAL_B',
+'Convite1_VMJ_19072018_FREE_Menos quem Abriu as 8h',
+'Convite1_VMJ_19072018_PAGOS_Menos quem Abriu as 8h'
+)
+group by cast(s.EventDate as date),
+ej.xcode,
+s.SubscriberKey,
+jo.EmailName,
+jo.EmailSubject</code></pre>
+<p><strong>Target Data Extension: Disparos_MRL_VMJ (Append)</strong></p>
+<ul>
+<li><strong>disparo_mrl_2</strong></li>
+</ul>
+<pre><code class="language-sql">select
+cast(s.EventDate as date) as SendDate,
+null as OpenDate,
+null as ClickDate,
+s.SubscriberKey as Email,
+jo.EmailName as EmailNameJob,
+jo.EmailSubject as EmailSubject,
+0 as EntryDate,
+ej.xcode as EntryXcode,
+sum(case when O.SubscriberID is not null then 1 else 0 end) as Opens,
+sum(case when ck.SubscriberID is not null then 1 else 0 end) as Clicks,
+0 as UniqueOpens,
+0 as UniqueClicks,
+count(*) as Sends
+from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID
+left join (select distinct SubscriberID, JobID from _open) O
+on s.SubscriberID = O.SubscriberID
+and s.JobID = O.JobID
+left join (select distinct SubscriberID, JobID from _click) ck
+on s.SubscriberID = ck.SubscriberID
+and s.JobID = ck.JobID
+left join ENT.Hotlist_Coração_Anti_infarto_Externa ej
+on s.Subscriberkey = ej.Subscriberkey
+where s.EventDate &gt;= '06-27-2018'
+and ltrim(rtrim(upper(jo.EmailName))) in (
+'Convite2_VMJ_22072018_FREE_teste B',
+'Convite2_VMJ_22072018_PAGOS_teste B',
+'Convite2_VMJ_22072018_FREE_teste A',
+'Convite2_VMJ_22072018_PAGOS_teste A',
+'AViso_CPL1_VMJ_23072018_HL'
+)
+group by cast(s.EventDate as date),
+ej.xcode,
+s.SubscriberKey,
+jo.EmailName,
+jo.EmailSubject</code></pre>
+<p><strong>Target Data Extension: Disparos_MRL_VMJ (Append)</strong></p>
+<ul>
+<li><strong>disparo_mrl_3</strong></li>
+</ul>
+<pre><code class="language-sql">select
+cast(s.EventDate as date) as SendDate,
+null as OpenDate,
+null as ClickDate,
+s.SubscriberKey as Email,
+jo.EmailName as EmailNameJob,
+jo.EmailSubject as EmailSubject,
+0 as EntryDate,
+ej.xcode as EntryXcode,
+sum(case when O.SubscriberID is not null then 1 else 0 end) as Opens,
+sum(case when ck.SubscriberID is not null then 1 else 0 end) as Clicks,
+0 as UniqueOpens,
+0 as UniqueClicks,
+count(*) as Sends
+from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID
+left join (select distinct SubscriberID, JobID from _open) O
+on s.SubscriberID = O.SubscriberID
+and s.JobID = O.JobID
+left join (select distinct SubscriberID, JobID from _click) ck
+on s.SubscriberID = ck.SubscriberID
+and s.JobID = ck.JobID
+left join ENT.Hotlist_Coração_Anti_infarto_Externa ej
+on s.Subscriberkey = ej.Subscriberkey
+where s.EventDate &gt;= '06-27-2018'
+and ltrim(rtrim(upper(jo.EmailName))) in (
+'RE_AViso_CPL1_VMJ_24072018_HL',
+'AViso_CPL1_VMJ_23072018_FREE',
+'AViso_CPL1_VMJ_23072018_PAGOS',
+'Aviso_CPL2_25072018_Pagos',
+'Aviso_CPL2_25072018_Free',
+'Aviso_CPL2_25072018_Hotlist',
+'Re- Aviso_CPL2_26072018_Hotlist',
+'Aviso_CPL3_26072018_Free',
+'Aviso_CPL3_26072018_Pagos',
+'Aviso_CPL3_26072018_Hotlist',
+'Antecipacao_Vendas_30072018_VMJ_Hotlists',
+'Re_Aviso_CPL3_29072018_Hotlist'
+)
+group by cast(s.EventDate as date),
+ej.xcode,
+s.SubscriberKey,
+jo.EmailName,
+jo.EmailSubject</code></pre>
+<p><strong>Target Data Extension: Disparos_MRL_VMJ (Append)</strong></p>
+<ul>
+<li><strong>disparo_mrl_4</strong></li>
+</ul>
+<pre><code class="language-sql">select
+cast(s.EventDate as date) as SendDate,
+null as OpenDate,
+null as ClickDate,
+s.SubscriberKey as Email,
+jo.EmailName as EmailNameJob,
+jo.EmailSubject as EmailSubject,
+0 as EntryDate,
+ej.xcode as EntryXcode,
+sum(case when O.SubscriberID is not null then 1 else 0 end) as Opens,
+sum(case when ck.SubscriberID is not null then 1 else 0 end) as Clicks,
+0 as UniqueOpens,
+0 as UniqueClicks,
+count(*) as Sends
+from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID
+left join (select distinct SubscriberID, JobID from _open) O
+on s.SubscriberID = O.SubscriberID
+and s.JobID = O.JobID
+left join (select distinct SubscriberID, JobID from _click) ck
+on s.SubscriberID = ck.SubscriberID
+and s.JobID = ck.JobID
+left join ENT.Hotlist_Coração_Anti_infarto_Externa ej
+on s.Subscriberkey = ej.Subscriberkey
+where s.EventDate &gt;= '06-27-2018'
+and ltrim(rtrim(upper(jo.EmailName))) in (
+'Aviso_CPL4_31072018_PAGOS',
+'Aviso_CPL4_31072018_Hotlist',
+'Aviso_CPL4_31072018_FREE',
+'Aviso_CPL4_31072018_FREE',
+'Aviso_CPL4_31072018_PAGOS',
+'Aviso_CPL4_31072018_Hotlist',
+'Aviso_CPL4_2_31072018_Hotlist',
+'Aviso_CPL4_31072018_XJ-MI-JOLI-VMJ03-SUBJL-20180731-COPY-HLVMJ-4',
+'Aviso_CPL4_31072018_XJ-MI-JOLI-VMJ03-SUBJL-20180731-COPY-FREE-4',
+'Aviso_CPL4_31072018_XJ-MI-JOLI-VMJ03-SUBJL-20180731-COPY-PAGOS-4',
+'Aviso_CPL4_31072018_XJ-MI-JOLI-VMJ03-SUBJL-20180731-COPY-HLVMJ-3',
+'Aviso_CPL4_01082018_XJ-MI-JOLI-VMJ03-SUBJL-20180801-COPY-HLVMJ-X',
+'Aviso_CPL4_02082018_XJ-MI-JOLI-VMJ03-SUBJL-20180802-COPY-HLVMJ-X',
+'Aviso_CPL4_02082018_XJ-MI-JOLI-VMJ03-SUBJL-20180802-COPY-HLVMJ-X',
+'Aviso_CPL4_06082018_XJ-MI-JOLI-VMJ03-SUBJL-20180806-COPY-HLVMJ-X',
+'Aviso_CPL4_02082018_XJ-MI-JOLI-VMJ03-SUBJL-20180803-COPY-HLVMJ-X',
+'CPL4_Reabertura_Videos_04082018_FREE',
+'CPL4_Reabertura_Videos_04082018_HOTLIST',
+'CPL4_Reabertura_Videos_04082018_PAGOS'
+)
+group by cast(s.EventDate as date),
+ej.xcode,
+s.SubscriberKey,
+jo.EmailName,
+jo.EmailSubject</code></pre>
+<p><strong>Target Data Extension: Disparos_MRL_VMJ (Append)</strong></p>
+<ul>
+<li><strong>disparos_mrl_5</strong></li>
+</ul>
+<pre><code class="language-sql">select
+cast(s.EventDate as date) as SendDate,
+null as OpenDate,
+null as ClickDate,
+s.SubscriberKey as Email,
+jo.EmailName as EmailNameJob,
+jo.EmailSubject as EmailSubject,
+0 as EntryDate,
+ej.xcode as EntryXcode,
+sum(case when O.SubscriberID is not null then 1 else 0 end) as Opens,
+sum(case when ck.SubscriberID is not null then 1 else 0 end) as Clicks,
+0 as UniqueOpens,
+0 as UniqueClicks,
+count(*) as Sends
+from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID
+left join (select distinct SubscriberID, JobID from _open) O
+on s.SubscriberID = O.SubscriberID
+and s.JobID = O.JobID
+left join (select distinct SubscriberID, JobID from _click) ck
+on s.SubscriberID = ck.SubscriberID
+and s.JobID = ck.JobID
+left join ENT.Hotlist_Coração_Anti_infarto_Externa ej
+on s.Subscriberkey = ej.Subscriberkey
+where s.EventDate &gt;= '06-27-2018'
+and ltrim(rtrim(upper(jo.EmailName))) in (
+'Convite_Live_VMJ_06082018_19h00_XJ-MI-JOLI-VMJ03-SUBJL-20180806-LIVE-PAGOS-3_PAGOS',
+'Convite_Live_VMJ_06082018_19h00_XJ-MI-JOLI-VMJ03-SUBJL-20180806-LIVE-HLVMJ-3_HOTLIST',
+'Convite_Live_VMJ_06082018_19h00_XJ-MI-JOLI-VMJ03-SUBJL-20180806-LIVE-FREE-3_FREE',
+'Convite_Live_VMJ_06082018_18h45_XJ-MI-JOLI-VMJ03-SUBJL-20180806-LIVE-X-2',
+'Convite_Live_VMJ_06082018_18h45_XJ-MI-JOLI-VMJ03-SUBJL-20180806-LIVE-X-X_HOTLIST',
+'Webinario_CPL4_06082018_XJ-MI-JOLI-VMJ03-SUBJL-20180806-LIVE-X-X',
+'Aviso_CPL4_06082018_XJ-MI-JOLI-VMJ03-SUBJL-20180806-COPY-HLVMJ-X'
+)
+group by cast(s.EventDate as date),
+ej.xcode,
+s.SubscriberKey,
+jo.EmailName,
+jo.EmailSubject</code></pre>
+<p><strong>Target Data Extension: Disparos_MRL_VMJ (Append)</strong></p>
+</li>
+</ul>
+<h2 id="data-extract">Data Extract</h2>
+<ul>
+<li><strong>disparo_hotlist_sdc</strong></li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/Z/-/HJm0g7-ZV.png" alt="" /></p>
+<p><strong>Data Extension: 534676C1-25A0-4DAA-8D50-973487269FE1</strong></p>
+<h2 id="file-transfer">File Transfer</h2>
+<ul>
+<li>
+<p><strong>disparos_hotlist_sdc</strong></p>
+<p><strong>File Naming Pattern: disparos_rml_vmj%%Year%%%%Month%%%%Day%%.csv</strong></p>
+</li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/-/b/rJKB-Qb-V.png" alt="" /></p>
+<!-- CONTENT END -->
+
+            </article>
+            <footer>
+                <hr>
+
+<!-- FOOTER BEGIN -->
+© 2018 Jolivi. Todos os direitos reservados. Termos de Uso e Política de Privacidade.
+<!-- FOOTER END -->
+
+            </footer>
+        </main>
+
+        <script src="/assets/toc.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script>Prism.plugins.autoloader.languages_path = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/";</script>
+        <link rel="stylesheet" href="/assets/prism.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/js-search@1.4.2/dist/umd/js-search.min.js"></script>
+        <script src="/assets/search.js"></script>
+        <!-- Livereload -->
+        <script>
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <!-- End Livereload -->
+    </body>
+</html>

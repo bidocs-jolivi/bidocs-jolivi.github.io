@@ -1,0 +1,271 @@
+<!doctype html>
+<html class="lazyload">
+    <head>
+        <title>Automations\Scheduled\Carrinho Abandonado - Jornada\README · BI | Docs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+                <link rel="icon" type="image/png" href="/icon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share:400|Jaldi:400,700|Fira+Mono:400,700">
+        <link rel="stylesheet" href="/assets/base.css">
+        <link rel="stylesheet" href="/assets/lindoc.css">
+        <style>
+            a,.results strong{color:#1c6964}
+            button,input[type=submit],input[type=button],input[type=reset],.button,.search input[type=submit]{background-color:#1c6964}
+            .search input[type=text]:focus,.results,.results strong{border-color:#1c6964 !important}
+            @media screen and (min-width:1450px){.livetoc a.active{ color:#1c6964}}
+        </style>
+        <script>
+            // Parent Elements - e.P("body") - https://gist.github.com/moqmar/0995cf6595201f7a062fb173cb4ab938
+            (function(E){E.matches||(E.matches=E.matchesSelector||E.msMatchesSelector||E.webkitMatchesSelector)})(Element.prototype)
+            Element.prototype.P=function(s){var e=this
+            if(!s||typeof s=="number")for(var i=0;i<(s||1);i++)e=e?e.parentElement:e
+            else if(typeof s=="string")while(e&&!e.matches(s))e=e.parentElement
+            else while(e&&e!=s)e=e.parentElement
+            return e}
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="/"><img src="https://joliviimagens.s3.amazonaws.com/editormc_disparos/produtos/jolivi/logo_jolivi_128x128.png" alt="BI | Docs"></a>
+            </h1>
+            <!-- THIS DOCUMENT IS INDEXED -->
+            <div class="search" role="search"><form data-baseurl="" onsubmit="search(this); return false;">
+                <input type="text" class="search-query" oninput="search(this.parentElement)" placeholder="Search...">
+                <input type="submit" value="➜">
+            </form><div class="results"></div></div>
+            <nav class="breadcrumbs">
+                <a href="/">BI | Docs</a> » <strong>Automations\Scheduled\Carrinho Abandonado - Jornada\README</strong>
+            </nav>
+        </header>
+
+        <main>
+            <aside class="toc"><ul></ul></aside>
+            <article>
+                <template search-description></template>
+
+<!-- CONTENT START -->
+<h1 id="carrinho-abandonado---jornada">Carrinho Abandonado - Jornada</h1>
+<p>Last run: Every 1 hour [xx]:30</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/9/S1cyR79-4.png" alt="" /></p>
+<h2 id="workflow">Workflow</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/W/9/rJ-bRQ9W4.png" alt="" /></p>
+<h2 id="queries">Queries</h2>
+<ul>
+<li>
+<p><strong>Query_Lista_Carrinho_Abandonado_D0</strong></p>
+<pre><code class="language-sql">select distinct subscriberkey,
+                EmailName as Plano,
+                EventDate as Data_Envio
+ from _sent s
+ left join [_job] jo
+   on s.JobID = jo.JobID  
+where upper(jo.EmailName) like '%CARRINHO%'  
+  and cast(EventDate as date) &gt; DATEADD(day,-1,convert(date,GETDATE()))</code></pre>
+<p><strong>Target Data Extension: Lista_Receberam_Carrinho_dia (Overwrite)</strong></p>
+</li>
+<li>
+<p><strong>Receberam Welcome de assinatura</strong></p>
+<pre><code class="language-sql">select s.subscriberkey,
+                jo.EmailName CONFIRMA,
+                '' as WELCOME,
+                cast(s.EventDate as varchar(50)) Data,
+                '' as Data1
+  from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID
+and upper(jo.EmailName) like '%CONFIRMA%'
+where s.EventDate &gt;= DATEADD(day,-1,convert(date,GETDATE()))
+group by s.subscriberkey,
+                jo.EmailName,
+                cast(s.EventDate as varchar(50))</code></pre>
+<p><strong>Target Data Extension: Carrinho_Abandonado_Welcome_Pagamento (Overwrite)</strong></p>
+</li>
+<li>
+<p><strong>Insere entrantes na Carrinho Jornada do Carrinho</strong></p>
+<pre><code class="language-sql">select distinct
+    t1.subscriberkey,
+    getdate() as data_entrada,
+    case 
+        when promotion like '%RNVXL%' then 'Remedio Natural Vitalicio + Expresso + Livro'
+        when promotion like '%VD%' then 'Diabetes Zero'
+        when promotion like '%RNV%' then 'Remedio Natural Vitalicio'
+        when promotion like '%PL%' then 'Palavra'
+        when promotion like '%GS%' then 'Golden Six'
+        when promotion like '%CONEX%' then 'Conexao'
+        when promotion like '%HF%' then 'Homem de Ferro'
+        when promotion like '%VSD%' then 'Vida sem dor'
+        when promotion like '%SEVX%' then 'Dossie Vitalicio + Expresso'
+        when promotion like '%CCVX%' then 'Conexao Vitalicio + Expresso'
+        when promotion like '%SE%' then 'Dossie'
+        when promotion like '%SOS%' then 'SOS Artrite'
+        when promotion like '%AJM%' then '30 Anos mais Jovem'
+        when promotion like '%CB%' then 'Clube Jolivi'
+        when promotion like '%RN%' then 'Remedio'
+        when promotion like '%MV%' then 'Mais Visao'
+        when promotion like '%SSA%' then 'Super Saude Anual'
+        when promotion like '%VMJ%' then 'Voce Mais Jovem'
+        when promotion like '%CAIE%' then 'Coracao Antiinfarto Essential'
+        when promotion like '%CAI%' then 'Coracao Antiinfarto'
+        when promotion like '%SDC%' then 'Saude da Coluna'
+        when promotion like '%RNBB%' then 'Remedio Natural Big Book'
+        when promotion like '%SEBB%' then 'Dossie Big Book'
+        when promotion like '%CNXBB%' then 'Conexao Cerebro Big Book'
+        when promotion like '%PLRBB%' then 'Palavra Lair Big Book'
+        when promotion like '%SDA%' then 'Semana do Alzheimer'
+        else 'BICAR'
+    end as produto,
+    checkout, 
+    ds
+from (select subscriberkey,
+             checkout,
+             ds,
+             xpromo,
+             replace(substring(substring(substring(xpromo,charindex('-',xpromo)+1,100),charindex('-', substring(xpromo,charindex('-' , xpromo)+1,100))+1,100),charindex('-' , substring(substring(xpromo,charindex('-' , xpromo)+1,100),charindex('-' , substring(xpromo,charindex('-' , xpromo)+1,100))+1,100))+1,charindex('-' , substring(substring(substring(xpromo,charindex('-' , xpromo)+1,100),charindex('-' , substring(xpromo,charindex('-' , xpromo)+1,100))+1,100),charindex('-' , substring(substring(xpromo,charindex('-' , xpromo)+1,100),charindex('-', substring(xpromo,charindex('-' , xpromo)+1,100))+1,100))+1,100))),'-','') promotion,
+             data_entrada
+        from Carrinho_copy) t1
+where
+  cast(t1.data_entrada as date) &gt; DATEADD(day,-1,convert(date,GETDATE()))
+and t1.subscriberkey+(case 
+        when t1.promotion like '%RNVXL%' then 'Carrinho_remedio_vitalicio_expresso_livro'
+        when t1.promotion like '%VD%' then 'Carrinho_01_diabetes_zero'
+        when t1.promotion like '%RNV%' then 'Carrinho_01_remedio_vitalicio'
+        when t1.promotion like '%PL%' then 'Carrinho_01_dr_lair'
+        when t1.promotion like '%GS%' then 'Carrinho_01_golden_six'
+        when t1.promotion like '%CONEX%' then 'Carrinho_01_conexao_cerebro'
+        when t1.promotion like '%HF%' then 'Carrinho_01_homem_de_ferro'
+        when t1.promotion like '%HF%' then 'Carrinho_01_homem_de_ferro - ANTIGO'
+        when t1.promotion like '%VSD%' then 'Carrinho_01_vida_sem_dor'
+        when t1.promotion like '%SEVX%' then 'Carrinho_01_dossie_vitalicio_expresso'
+        when t1.promotion like '%CCVX%' then 'Carrinho_01_conexao_vitalicio_expresso'
+        when t1.promotion like '%SE%' then 'Carrinho_01_dossie_saude_essencial Copy'
+        when t1.promotion like '%SOS%' then 'Carrinho_01_sos_artrite'
+        when t1.promotion like '%AJM%' then 'Carrinho_01_30_anos_mais_jovem'
+        when t1.promotion like '%CB%' then 'Carrinho_01_clube_jolivi'
+        when t1.promotion like '%RN%' then 'Carrinho_01_remedio_natural'
+        when t1.promotion like '%MV%' then 'Carrinho_01_mais_visao'
+        when t1.promotion like '%SSA%' then 'Carrinho_01_super_saude_anual'
+        when t1.promotion like '%VMJ%' then 'Carrinho_01_voce_mais_jovem'
+        when t1.promotion like '%CAIE%' then 'Carrinho_01_Coracao_Anti_Infarto_Essencial'
+        when t1.promotion like '%CAI%' then 'Carrinho_01_Coração_Anti_Infarto'
+        when t1.promotion like '%SDC%' then 'Carrinho_01_Saude_da_Coluna'
+        when t1.promotion like '%RNBB%' then 'Carrinho_01_remedio_natural_grande_livro_saude_natural'
+        when t1.promotion like '%SEBB%' then 'Carrinho_01_Dossie_Livro_Anual'
+        when t1.promotion like '%CNXBB%' then 'carrinho_01_conexao_anual_bb'
+        when t1.promotion like '%PLRBB%' then 'carrinho_01_palavra_lair_bb'
+        when t1.promotion like '%SDA%' then 'carrinho_01_super_cerebro'
+        else 'BICAR'
+    end) not in (select subscriberkey+plano from Lista_Receberam_Carrinho_dia )
+and t1.subscriberkey not in (select subscriberkey from Carrinho_Abandonado_Welcome_Pagamento)</code></pre>
+<p><strong>Target Data Extension: Carrinho_abandonado_elegiveis_NEW (Overwrite)</strong></p>
+</li>
+<li>
+<p><strong>Carrinho_Diabetes_Zero</strong></p>
+<pre><code class="language-sql">select distinct
+    t1.subscriberkey,
+    getdate() as data_entrada,
+    case 
+        when promotion like '%RNVXL%' then 'Remedio Natural Vitalicio + Expresso + Livro'
+        when promotion like '%VD%' then 'Diabetes Zero'
+        when promotion like '%RNV%' then 'Remedio Natural Vitalicio'
+        when promotion like '%PL%' then 'Palavra'
+        when promotion like '%GS%' then 'Golden Six'
+        when promotion like '%CONEX%' then 'Conexao'
+        when promotion like '%HF%' then 'Homem de Ferro'
+        when promotion like '%VSD%' then 'Vida sem dor'
+        when promotion like '%SEVX%' then 'Dossie Vitalicio + Expresso'
+        when promotion like '%CCVX%' then 'Conexao Vitalicio + Expresso'
+        when promotion like '%SE%' then 'Dossie'
+        when promotion like '%SOS%' then 'SOS Artrite'
+        when promotion like '%AJM%' then '30 Anos mais Jovem'
+        when promotion like '%CB%' then 'Clube Jolivi'
+        when promotion like '%RN%' then 'Remedio'
+        when promotion like '%MV%' then 'Mais Visao'
+        when promotion like '%SSA%' then 'Super Saude Anual'
+        when promotion like '%VMJ%' then 'Voce Mais Jovem'
+        when promotion like '%CAIE%' then 'Coracao Antiinfarto Essential'
+        when promotion like '%CAI%' then 'Coracao Antiinfarto'
+        when promotion like '%SDC%' then 'Saude da Coluna'
+        when promotion like '%RNBB%' then 'Remedio Natural Big Book'
+        when promotion like '%SEBB%' then 'Dossie Big Book'
+        when promotion like '%CNXBB%' then 'Conexao Cerebro Big Book'
+        when promotion like '%PLRBB%' then 'Palavra Lair Big Book'
+        when promotion like '%SDA%' then 'Semana do Alzheimer'
+        else 'BICAR'
+    end as produto,
+    'https://loja.jolivi.com.br/comprar/114/' as checkout,
+    'dbzp'as ds
+from (select subscriberkey,
+             xpromo,
+             replace(substring(substring(substring(xpromo,charindex('-',xpromo)+1,100),charindex('-', substring(xpromo,charindex('-' , xpromo)+1,100))+1,100),charindex('-' , substring(substring(xpromo,charindex('-' , xpromo)+1,100),charindex('-' , substring(xpromo,charindex('-' , xpromo)+1,100))+1,100))+1,charindex('-' , substring(substring(substring(xpromo,charindex('-' , xpromo)+1,100),charindex('-' , substring(xpromo,charindex('-' , xpromo)+1,100))+1,100),charindex('-' , substring(substring(xpromo,charindex('-' , xpromo)+1,100),charindex('-', substring(xpromo,charindex('-' , xpromo)+1,100))+1,100))+1,100))),'-','') promotion,
+             date
+        from Entrada_Carrinho_Abandonado_VD) t1
+where
+  cast(t1.date as date) &gt; DATEADD(day,-1,convert(date,GETDATE()))
+and t1.subscriberkey+(case 
+        when t1.promotion like '%RNVXL%' then 'Carrinho_remedio_vitalicio_expresso_livro'
+        when t1.promotion like '%VD%' then 'Carrinho_01_diabetes_zero'
+        when t1.promotion like '%RNV%' then 'Carrinho_01_remedio_vitalicio'
+        when t1.promotion like '%PL%' then 'Carrinho_01_dr_lair'
+        when t1.promotion like '%GS%' then 'Carrinho_01_golden_six'
+        when t1.promotion like '%CONEX%' then 'Carrinho_01_conexao_cerebro'
+        when t1.promotion like '%HF%' then 'Carrinho_01_homem_de_ferro'
+        when t1.promotion like '%HF%' then 'Carrinho_01_homem_de_ferro - ANTIGO'
+        when t1.promotion like '%VSD%' then 'Carrinho_01_vida_sem_dor'
+        when t1.promotion like '%SEVX%' then 'Carrinho_01_dossie_vitalicio_expresso'
+        when t1.promotion like '%CCVX%' then 'Carrinho_01_conexao_vitalicio_expresso'
+        when t1.promotion like '%SE%' then 'Carrinho_01_dossie_saude_essencial'
+        when t1.promotion like '%SOS%' then 'Carrinho_01_sos_artrite'
+        when t1.promotion like '%AJM%' then 'Carrinho_01_30_anos_mais_jovem'
+        when t1.promotion like '%CB%' then 'Carrinho_01_clube_jolivi'
+        when t1.promotion like '%RN%' then 'Carrinho_01_remedio_natural'
+        when t1.promotion like '%MV%' then 'Carrinho_01_mais_visao'
+        when t1.promotion like '%SSA%' then 'Carrinho_01_super_saude_anual'
+        when t1.promotion like '%VMJ%' then 'Carrinho_01_voce_mais_jovem'
+        when t1.promotion like '%CAIE%' then 'Carrinho_01_Coracao_Anti_Infarto_Essencial'
+        when t1.promotion like '%CAI%' then 'Carrinho_01_Coração_Anti_Infarto'
+        when t1.promotion like '%SDC%' then 'Carrinho_01_Saude_da_Coluna'
+        when t1.promotion like '%RNBB%' then 'Carrinho_01_remedio_natural_grande_livro_saude_natural'
+        when t1.promotion like '%SEBB%' then 'Carrinho_01_Dossie_Livro_Anual'
+        when t1.promotion like '%CNXBB%' then 'carrinho_01_conexao_anual_bb'
+        when t1.promotion like '%PLRBB%' then 'carrinho_01_palavra_lair_bb'
+        when t1.promotion like '%SDA%' then 'carrinho_01_super_cerebro'
+        else 'BICAR'
+    end) not in (select subscriberkey+plano from Lista_Receberam_Carrinho_dia )
+and t1.subscriberkey not in (select subscriberkey from Carrinho_Abandonado_Welcome_Pagamento)</code></pre>
+<p><strong>Target Data Extension: Carrinho_abandonado_elegiveis_NEW (Append)</strong></p>
+</li>
+</ul>
+<h2 id="run-log">Run Log</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/W/q/S1ff0QqWN.png" alt="" /> </p>
+<!-- CONTENT END -->
+
+            </article>
+            <footer>
+                <hr>
+
+<!-- FOOTER BEGIN -->
+© 2018 Jolivi. Todos os direitos reservados. Termos de Uso e Política de Privacidade.
+<!-- FOOTER END -->
+
+            </footer>
+        </main>
+
+        <script src="/assets/toc.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script>Prism.plugins.autoloader.languages_path = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/";</script>
+        <link rel="stylesheet" href="/assets/prism.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/js-search@1.4.2/dist/umd/js-search.min.js"></script>
+        <script src="/assets/search.js"></script>
+        <!-- Livereload -->
+        <script>
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <!-- End Livereload -->
+    </body>
+</html>

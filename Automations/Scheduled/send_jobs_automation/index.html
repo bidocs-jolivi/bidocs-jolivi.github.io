@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="lazyload">
+    <head>
+        <title>Automations\Scheduled\send_jobs_automation\README · BI | Docs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+                <link rel="icon" type="image/png" href="/icon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share:400|Jaldi:400,700|Fira+Mono:400,700">
+        <link rel="stylesheet" href="/assets/base.css">
+        <link rel="stylesheet" href="/assets/lindoc.css">
+        <style>
+            a,.results strong{color:#1c6964}
+            button,input[type=submit],input[type=button],input[type=reset],.button,.search input[type=submit]{background-color:#1c6964}
+            .search input[type=text]:focus,.results,.results strong{border-color:#1c6964 !important}
+            @media screen and (min-width:1450px){.livetoc a.active{ color:#1c6964}}
+        </style>
+        <script>
+            // Parent Elements - e.P("body") - https://gist.github.com/moqmar/0995cf6595201f7a062fb173cb4ab938
+            (function(E){E.matches||(E.matches=E.matchesSelector||E.msMatchesSelector||E.webkitMatchesSelector)})(Element.prototype)
+            Element.prototype.P=function(s){var e=this
+            if(!s||typeof s=="number")for(var i=0;i<(s||1);i++)e=e?e.parentElement:e
+            else if(typeof s=="string")while(e&&!e.matches(s))e=e.parentElement
+            else while(e&&e!=s)e=e.parentElement
+            return e}
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="/"><img src="https://joliviimagens.s3.amazonaws.com/editormc_disparos/produtos/jolivi/logo_jolivi_128x128.png" alt="BI | Docs"></a>
+            </h1>
+            <!-- THIS DOCUMENT IS INDEXED -->
+            <div class="search" role="search"><form data-baseurl="" onsubmit="search(this); return false;">
+                <input type="text" class="search-query" oninput="search(this.parentElement)" placeholder="Search...">
+                <input type="submit" value="➜">
+            </form><div class="results"></div></div>
+            <nav class="breadcrumbs">
+                <a href="/">BI | Docs</a> » <strong>Automations\Scheduled\send_jobs_automation\README</strong>
+            </nav>
+        </header>
+
+        <main>
+            <aside class="toc"><ul></ul></aside>
+            <article>
+                <template search-description></template>
+
+<!-- CONTENT START -->
+<h1 id="send_jobs_automation">send_jobs_automation</h1>
+<p>Last run: Every 1 hour [xx]:27</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/W/s/HJh4AssWV.png" alt="" /></p>
+<h2 id="workflow">Workflow</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/b/o/HkaHRsob4.png" alt="" /></p>
+<h2 id="data-extract">Data Extract</h2>
+<ul>
+<li><strong>send_jobs</strong></li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/-/j/rJFCRij-V.png" alt="" /></p>
+<p><strong>File Naming Pattern: send_jobs%%Year%%%%Month%%%%Day%%.zip</strong></p>
+<h2 id="file-transfer">File Transfer</h2>
+<ul>
+<li><strong>send_jobs_transfer</strong></li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/Z/o/BJx-12oZV.png" alt="" /></p>
+<h2 id="queries">Queries</h2>
+<ul>
+<li>
+<hr />
+<pre><code class="language-sql">select  count (distinct SubscriberID) as  qt_uniq_clicks
+    ,JobID
+    ,URL    
+    ,LinkName
+from _click
+group by JobID
+    ,URL
+    ,LinkName</code></pre>
+<p><strong>Target Data Extension: xpromo_disparo (Overwrite)</strong></p>
+</li>
+</ul>
+<h2 id="data-extract-1">Data Extract</h2>
+<ul>
+<li><strong>xpromo_disparo_extract</strong></li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/Z/j/H1pDJnjZN.png" alt="" /></p>
+<p><strong>File Naming Pattern: xpromo_disparo%%Year%%%%Month%%%%Day%%.csv</strong></p>
+<p><strong>DECustomer Key: 3575A81C-5311-46CF-857F-6EC94E3DADF2</strong></p>
+<h2 id="file-transfer-1">File Transfer</h2>
+<ul>
+<li><strong>xpromo_disparo_transfer</strong></li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/N/-/j/r1bcyhj-N.png" alt="" /></p>
+<h2 id="run-log">Run Log</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/j/ryCLRij-4.png" alt="" /> </p>
+<!-- CONTENT END -->
+
+            </article>
+            <footer>
+                <hr>
+
+<!-- FOOTER BEGIN -->
+© 2018 Jolivi. Todos os direitos reservados. Termos de Uso e Política de Privacidade.
+<!-- FOOTER END -->
+
+            </footer>
+        </main>
+
+        <script src="/assets/toc.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script>Prism.plugins.autoloader.languages_path = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/";</script>
+        <link rel="stylesheet" href="/assets/prism.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/js-search@1.4.2/dist/umd/js-search.min.js"></script>
+        <script src="/assets/search.js"></script>
+        <!-- Livereload -->
+        <script>
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <!-- End Livereload -->
+    </body>
+</html>

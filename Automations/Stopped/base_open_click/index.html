@@ -1,0 +1,200 @@
+<!doctype html>
+<html class="lazyload">
+    <head>
+        <title>Automations\Stopped\base_open_click\README · BI | Docs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+                <link rel="icon" type="image/png" href="/icon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share:400|Jaldi:400,700|Fira+Mono:400,700">
+        <link rel="stylesheet" href="/assets/base.css">
+        <link rel="stylesheet" href="/assets/lindoc.css">
+        <style>
+            a,.results strong{color:#1c6964}
+            button,input[type=submit],input[type=button],input[type=reset],.button,.search input[type=submit]{background-color:#1c6964}
+            .search input[type=text]:focus,.results,.results strong{border-color:#1c6964 !important}
+            @media screen and (min-width:1450px){.livetoc a.active{ color:#1c6964}}
+        </style>
+        <script>
+            // Parent Elements - e.P("body") - https://gist.github.com/moqmar/0995cf6595201f7a062fb173cb4ab938
+            (function(E){E.matches||(E.matches=E.matchesSelector||E.msMatchesSelector||E.webkitMatchesSelector)})(Element.prototype)
+            Element.prototype.P=function(s){var e=this
+            if(!s||typeof s=="number")for(var i=0;i<(s||1);i++)e=e?e.parentElement:e
+            else if(typeof s=="string")while(e&&!e.matches(s))e=e.parentElement
+            else while(e&&e!=s)e=e.parentElement
+            return e}
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="/"><img src="https://joliviimagens.s3.amazonaws.com/editormc_disparos/produtos/jolivi/logo_jolivi_128x128.png" alt="BI | Docs"></a>
+            </h1>
+            <!-- THIS DOCUMENT IS INDEXED -->
+            <div class="search" role="search"><form data-baseurl="" onsubmit="search(this); return false;">
+                <input type="text" class="search-query" oninput="search(this.parentElement)" placeholder="Search...">
+                <input type="submit" value="➜">
+            </form><div class="results"></div></div>
+            <nav class="breadcrumbs">
+                <a href="/">BI | Docs</a> » <strong>Automations\Stopped\base_open_click\README</strong>
+            </nav>
+        </header>
+
+        <main>
+            <aside class="toc"><ul></ul></aside>
+            <article>
+                <template search-description></template>
+
+<!-- CONTENT START -->
+<h1 id="base_open_click">base_open_click</h1>
+<p>Last run: Dec 17, 2018 3:50 PM </p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="https://storage.googleapis.com/openscreenshot/E/b/b/Bk8U3lbbE.png" alt="" /></p>
+<h2 id="queries">Queries</h2>
+<ul>
+<li>
+<p><strong>base_open_click</strong></p>
+<pre><code class="language-sql">select distinct
+s.SubscriberID,
+s.SubscriberKey
+from [_Sent] s
+inner join [_job] jo
+on s.JobID = jo.JobID</code></pre>
+<p><strong>Target Data Extension: Novo_engajamento_Geralv12 (Overwrite)</strong></p>
+</li>
+<li>
+<p><strong>base_open_click_data_open</strong></p>
+<pre><code class="language-sql">select distinct 
+SubscriberID,
+data_open
+from (
+select 
+O.SubscriberID,
+max(cast(O.EventDate as date)) data_open
+from _open O
+group by O.SubscriberID) tab</code></pre>
+<p><strong>Target Data Extension: Novo_engajamento_Geralv12  (Update)</strong></p>
+<ul>
+<li><strong>base_open_click_data_click</strong></li>
+</ul>
+<pre><code class="language-sql">select distinct 
+SubscriberID,
+data_click
+from (
+select 
+ck.SubscriberID,
+max(cast(ck.EventDate as date)) data_click
+from [_Click] ck
+group by ck.SubscriberID) tab</code></pre>
+<p><strong>Target Data Extension: Novo_engajamento_Geralv12  (Update)</strong></p>
+<ul>
+<li><strong>Ultimo_Envio</strong></li>
+</ul>
+<pre><code class="language-sql">select 
+SubscriberID,
+max(EventDate) data_ultimo_envio
+from [_Sent]
+group by SubscriberID</code></pre>
+<p><strong>Target Data Extension: Novo_engajamento_Geralv12  (Update)</strong></p>
+<ul>
+<li><strong>novo_engajamento_geral</strong></li>
+</ul>
+<pre><code class="language-sql">select 
+a.subscriberkey,
+b.data_open,
+b.data_click,
+a.data_de_entrada,
+b.data_ultimo_envio
+from ENT.de_g_jolivi a
+left join Novo_engajamento_Geralv12 b
+on a.subscriberkey = b.SubscriberKey</code></pre>
+<p><strong>Target Data Extension: Novo_engajamento_Geralv1  (Overwrite)</strong></p>
+<ul>
+<li><strong>classificacao_matriz</strong></li>
+</ul>
+<pre><code class="language-sql">Select subscriberkey,"Matriz"
+from (
+select *,case when data_de_entrada &gt; dateadd(d,-6,getdate()) then 'Gauntlet'
+          when data_de_entrada &gt; dateadd(d,-30,getdate()) then 'onboarding'
+          when data_click &gt; dateadd(d,-7,getdate()) then 'Matriz 1'
+          when data_click between dateadd(d,-15,getdate()) and dateadd(d,-7,getdate()) then 'Matriz 2'
+          when data_click between dateadd(d,-30,getdate()) and dateadd(d,-15,getdate()) then 'Matriz 3'
+          when data_open &gt; dateadd(d,-7,getdate()) then 'Matriz 9'
+          when data_open between dateadd(d,-15,getdate()) and dateadd(d,-7,getdate()) then 'Matriz 10'
+          when data_open between dateadd(d,-30,getdate()) and dateadd(d,-15,getdate()) then 'Matriz 11'
+          when data_click between dateadd(d,-60,getdate()) and dateadd(d,-30,getdate())then 'Matriz 4'
+          when data_click between dateadd(d,-90,getdate()) and dateadd(d,-60,getdate()) then 'Matriz 5'
+          when data_click between dateadd(d,-120,getdate()) and dateadd(d,-90,getdate()) then 'Matriz 6'
+          when data_click between dateadd(d,-150,getdate()) and dateadd(d,-120,getdate()) then 'Matriz 7'
+          when data_click between dateadd(d,-180,getdate()) and dateadd(d,-150,getdate()) then 'Matriz 8'
+          when data_open between dateadd(d,-60,getdate()) and dateadd(d,-30,getdate()) then 'Matriz 12'
+          when data_open between dateadd(d,-90,getdate()) and dateadd(d,-60,getdate()) then 'Matriz 13'
+          when data_open between dateadd(d,-120,getdate()) and dateadd(d,-90,getdate()) then 'Matriz 14'
+          when data_open between dateadd(d,-150,getdate()) and dateadd(d,-120,getdate()) then 'Matriz 15'
+          when data_open between dateadd(d,-180,getdate()) and dateadd(d,-150,getdate()) then 'Matriz 16'
+          when data_open  &lt; dateadd(d,-180,getdate()) then 'Matriz 17'
+          when data_open  is null then 'Matriz 18'
+   end "Matriz"
+from (  select subscriberkey,
+     case when data_open is null or data_open = '' then '' else data_open end data_open,
+     case when data_click is null or data_click = '' then '' else data_click end data_click,
+     data_de_entrada,
+     case when data_ultimo_envio is null or data_ultimo_envio = '' then '' else data_ultimo_envio end data_ultimo_envio
+from Novo_engajamento_Geralv1)A)B</code></pre>
+<p><strong>Target Data Extension: Novo_engajamento_Geralv1  (Update)</strong></p>
+<ul>
+<li><strong>classificacao_pagos</strong></li>
+</ul>
+<pre><code class="language-sql">select SubscriberKey,Pago from(
+select 
+A.SubscriberKey,
+B.Pago from Novo_engajamento_Geralv1 A
+left join Pagos_Jolivi_v1 B on 
+A.subscriberkey = B.subscriberkey)A</code></pre>
+<p><strong>Target Data Extension: Novo_engajamento_Geralv1  (Update)</strong></p>
+</li>
+</ul>
+<h2 id="filters">Filters</h2>
+<ul>
+<li>
+<p><strong>Filtro Disparo Matriz Diario</strong></p>
+<p><strong>Filter Definition: disparo_matriz_diario</strong></p>
+</li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/V/b/b/Sk5ZEWbbV.png" alt="" /></p>
+<ul>
+<li>
+<p><strong>Filtro Disparo Matriz Quarentena</strong></p>
+<p><strong>Filter Definition: disparo_matriz_quarentena</strong></p>
+</li>
+</ul>
+<p><img src="https://storage.googleapis.com/openscreenshot/4/-/Z/Hy6OE-Z-4.png" alt="" /></p>
+<!-- CONTENT END -->
+
+            </article>
+            <footer>
+                <hr>
+
+<!-- FOOTER BEGIN -->
+© 2018 Jolivi. Todos os direitos reservados. Termos de Uso e Política de Privacidade.
+<!-- FOOTER END -->
+
+            </footer>
+        </main>
+
+        <script src="/assets/toc.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script>Prism.plugins.autoloader.languages_path = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/";</script>
+        <link rel="stylesheet" href="/assets/prism.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/js-search@1.4.2/dist/umd/js-search.min.js"></script>
+        <script src="/assets/search.js"></script>
+        <!-- Livereload -->
+        <script>
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <!-- End Livereload -->
+    </body>
+</html>
